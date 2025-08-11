@@ -18,7 +18,7 @@ namespace server.Repositories
         public async Task AddAsync(T entity)
         {
             dbSet.Add(entity);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
         }
 
         public async Task<T> GetAsync(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = false)
@@ -69,13 +69,13 @@ namespace server.Repositories
         public async Task RemoveAsync(T entity)
         {
             dbSet.Remove(entity);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
         }
 
         public async Task RemoveRangeAsync(IEnumerable<T> entity)
         {
             dbSet.RemoveRange(entity);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
         }
     }
 }

@@ -180,3 +180,4 @@ D:\Workspace\task-manager\server\obj\Debug\net8.0\server.genruntimeconfig.cache
 D:\Workspace\task-manager\server\obj\Debug\net8.0\ref\server.dll
 D:\Workspace\task-manager\server\bin\Debug\net8.0\BCrypt.Net-Next.dll
 D:\Workspace\task-manager\server\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Workspace\task-manager\server\obj\Debug\net8.0\server.sourcelink.json
