@@ -1,11 +1,13 @@
 import type { ReactNode } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '~/Context';
 import config from '~/config';
 
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
+    const location = useLocation();
     const { user } = useAuth();
-    if (!user) return <Navigate to={config.routes.login} />;
+    console.log('user: ', user);
+    if (!user) return <Navigate to={config.routes.login} state={{ from: location }} replace />;
     return children;
 };
 

@@ -10,3 +10,13 @@ export interface UserProfile {
     FullName: string;
     Email: string;
 }
+
+export type LoginRequest = {
+    email: string;
+    password: string;
+};
+
+export type LoginResponse = {
+    user: User;
+    token: string;
+};
