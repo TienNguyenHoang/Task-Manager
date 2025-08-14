@@ -1,13 +1,35 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
 import config from '~/config';
 import { UserIcon, EmailIcon, PasswordIcon, RegisterIcon } from '~/components/Icons';
+import { type RegisterRequest } from '~/Models';
+import { useAuth } from '~/Context';
+
+const validateSchema = yup.object({
+    fullName: yup.string().required('Vui lòng nhập họ tên'),
+    email: yup.string().required('Vui lòng nhập email!').email('Sai định dạng email'),
+    password: yup.string().required('Vui lòng nhập mật khẩu!'),
+});
 
 const Register = () => {
-    const location = useLocation();
-    console.log('location state', location.state);
-    const handleSubmit = () => {};
+    const { registerUser } = useAuth();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<RegisterRequest>({
+        resolver: yupResolver(validateSchema),
+    });
+
+    const onSubmit = (form: RegisterRequest) => {
+        registerUser(form);
+    };
+
     return (
-        <form onSubmit={handleSubmit} className="min-h-[50%] min-w-[25%]">
+        <form onSubmit={handleSubmit(onSubmit)} className="min-h-[50%] min-w-[25%]">
             <div className="login-box">
                 <RegisterIcon className="bg-gradient-color m-5 self-center rounded-full p-3 text-white" />
                 <h1 className="self-center text-3xl font-bold">Tạo tài khoản</h1>
@@ -17,31 +39,34 @@ const Register = () => {
                     <input
                         className="flex-1 caret-(--color-main) outline-none"
                         type="text"
-                        required
                         spellCheck={false}
+                        {...register('fullName')}
                         placeholder="Họ tên"
                     />
                 </div>
+                {errors.fullName && <p className="text-xs text-red-500">{errors.fullName.message}</p>}
                 <div className="form-input">
                     <EmailIcon className="text-side mr-2" />
                     <input
                         className="flex-1 caret-(--color-main) outline-none"
                         type="email"
-                        required
                         spellCheck={false}
+                        {...register('email')}
                         placeholder="Email"
                     />
                 </div>
+                {errors.email && <p className="text-xs text-red-500">{errors.email.message}</p>}
                 <div className="form-input">
                     <PasswordIcon className="text-side mr-2" />
                     <input
                         className="flex-1 caret-(--color-main) outline-none"
                         type="password"
-                        required
                         spellCheck={false}
+                        {...register('password')}
                         placeholder="Mật khẩu"
                     />
                 </div>
+                {errors.password && <p className="text-xs text-red-500">{errors.password.message}</p>}
                 <button
                     type="submit"
                     className="bg-gradient-color my-2 h-8 w-full cursor-pointer rounded-lg font-bold text-white hover:shadow-lg"

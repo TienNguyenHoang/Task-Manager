@@ -1,6 +1,6 @@
 function PendingTask() {
     return (
-        <div>PendingTask</div>
+        <div></div>
     );
 }
 

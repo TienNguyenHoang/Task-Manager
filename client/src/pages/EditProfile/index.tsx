@@ -1,6 +1,6 @@
 function EditProfile() {
     return (
-        <div>EditProfile</div>
+        <div></div>
     );
 }
 

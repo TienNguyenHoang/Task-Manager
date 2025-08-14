@@ -3,7 +3,7 @@ import { ToastContainer } from 'react-toastify';
 import { Fragment } from 'react/jsx-runtime';
 
 import { AuthProvider } from '~/Context';
-import routes, { Protected } from '~/routes';
+import routes from '~/routes';
 import { MainLayout } from '~/layouts';
 
 function App() {
@@ -15,7 +15,6 @@ function App() {
                         {routes.map((route, index) => {
                             const Page = route.component;
                             let Layout = MainLayout;
-                            const ProtectedLayout = Protected;
 
                             if (route.layout) {
                                 Layout = route.layout;
@@ -23,17 +22,28 @@ function App() {
                                 Layout = Fragment;
                             }
 
+                            let isGuard = false;
+                            let RouteGuard = Layout;
+
+                            if (route.guest) {
+                                isGuard = true;
+                                RouteGuard = route.guest;
+                            } else if (route.protected) {
+                                isGuard = true;
+                                RouteGuard = route.protected;
+                            }
+
                             return (
                                 <Route
                                     key={index}
                                     path={route.path}
                                     element={
-                                        route.authenticate ? (
-                                            <ProtectedLayout>
+                                        isGuard ? (
+                                            <RouteGuard>
                                                 <Layout>
                                                     <Page />
                                                 </Layout>
-                                            </ProtectedLayout>
+                                            </RouteGuard>
                                         ) : (
                                             <Layout>
                                                 <Page />

@@ -102,3 +102,206 @@ export const RegisterIcon = ({
         <path d="M136 192C136 125.7 189.7 72 256 72C322.3 72 376 125.7 376 192C376 258.3 322.3 312 256 312C189.7 312 136 258.3 136 192zM48 546.3C48 447.8 127.8 368 226.3 368L285.7 368C384.2 368 464 447.8 464 546.3C464 562.7 450.7 576 434.3 576L77.7 576C61.3 576 48 562.7 48 546.3zM544 160C557.3 160 568 170.7 568 184L568 232L616 232C629.3 232 640 242.7 640 256C640 269.3 629.3 280 616 280L568 280L568 328C568 341.3 557.3 352 544 352C530.7 352 520 341.3 520 328L520 280L472 280C458.7 280 448 269.3 448 256C448 242.7 458.7 232 472 232L520 232L520 184C520 170.7 530.7 160 544 160z" />
     </svg>
 );
+
+export const LogoIcon = ({
+    className,
+    width = '2rem',
+    height = '2rem',
+}: {
+    className?: string;
+    width?: string;
+    height?: string;
+}) => (
+    <div className="bg-gradient-color inline-block rounded-xl p-2">
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className={className}
+            width={width}
+            height={height}
+        >
+            <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"
+            />
+        </svg>
+    </div>
+);
+
+export const SettingIcon = ({
+    className,
+    width = '1.6rem',
+    height = '1.6rem',
+}: {
+    className?: string;
+    width?: string;
+    height?: string;
+}) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className={className}
+        width={width}
+        height={height}
+    >
+        <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z"
+        />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+    </svg>
+);
+
+export const HeaderMenuIcon = ({
+    className,
+    width = '1.6rem',
+    height = '1.6rem',
+}: {
+    className?: string;
+    width?: string;
+    height?: string;
+}) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className={className}
+        width={width}
+        height={height}
+    >
+        <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+    </svg>
+);
+
+export const DashboardIcon = ({
+    className,
+    width = '1.6rem',
+    height = '1.6rem',
+}: {
+    className?: string;
+    width?: string;
+    height?: string;
+}) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 640 640"
+        className={className}
+        width={width}
+        height={height}
+    >
+        <path d="M304 70.1C313.1 61.9 326.9 61.9 336 70.1L568 278.1C577.9 286.9 578.7 302.1 569.8 312C560.9 321.9 545.8 322.7 535.9 313.8L527.9 306.6L527.9 511.9C527.9 547.2 499.2 575.9 463.9 575.9L175.9 575.9C140.6 575.9 111.9 547.2 111.9 511.9L111.9 306.6L103.9 313.8C94 322.6 78.9 321.8 70 312C61.1 302.2 62 287 71.8 278.1L304 70.1zM320 120.2L160 263.7L160 512C160 520.8 167.2 528 176 528L224 528L224 424C224 384.2 256.2 352 296 352L344 352C383.8 352 416 384.2 416 424L416 528L464 528C472.8 528 480 520.8 480 512L480 263.7L320 120.3zM272 528L368 528L368 424C368 410.7 357.3 400 344 400L296 400C282.7 400 272 410.7 272 424L272 528z" />
+    </svg>
+);
+
+export const PendingIcon = ({
+    className,
+    width = '1.6rem',
+    height = '1.6rem',
+}: {
+    className?: string;
+    width?: string;
+    height?: string;
+}) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 640 640"
+        className={className}
+        width={width}
+        height={height}
+    >
+        <path d="M197.8 100.3C208.7 107.9 211.3 122.9 203.7 133.7L147.7 213.7C143.6 219.5 137.2 223.2 130.1 223.8C123 224.4 116 222 111 217L71 177C61.7 167.6 61.7 152.4 71 143C80.3 133.6 95.6 133.7 105 143L124.8 162.8L164.4 106.2C172 95.3 187 92.7 197.8 100.3zM197.8 260.3C208.7 267.9 211.3 282.9 203.7 293.7L147.7 373.7C143.6 379.5 137.2 383.2 130.1 383.8C123 384.4 116 382 111 377L71 337C61.6 327.6 61.6 312.4 71 303.1C80.4 293.8 95.6 293.7 104.9 303.1L124.7 322.9L164.3 266.3C171.9 255.4 186.9 252.8 197.7 260.4zM288 160C288 142.3 302.3 128 320 128L544 128C561.7 128 576 142.3 576 160C576 177.7 561.7 192 544 192L320 192C302.3 192 288 177.7 288 160zM288 320C288 302.3 302.3 288 320 288L544 288C561.7 288 576 302.3 576 320C576 337.7 561.7 352 544 352L320 352C302.3 352 288 337.7 288 320zM224 480C224 462.3 238.3 448 256 448L544 448C561.7 448 576 462.3 576 480C576 497.7 561.7 512 544 512L256 512C238.3 512 224 497.7 224 480zM128 440C150.1 440 168 457.9 168 480C168 502.1 150.1 520 128 520C105.9 520 88 502.1 88 480C88 457.9 105.9 440 128 440z" />
+    </svg>
+);
+
+export const CompletedIcon = ({
+    className,
+    width = '1.6rem',
+    height = '1.6rem',
+}: {
+    className?: string;
+    width?: string;
+    height?: string;
+}) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        className={className}
+        width={width}
+        height={height}
+    >
+        <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+        />
+    </svg>
+);
+
+export const StarIcon = ({
+    className,
+    width = '.8rem',
+    height = '.8rem',
+}: {
+    className?: string;
+    width?: string;
+    height?: string;
+}) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className={className}
+        width={width}
+        height={height}
+    >
+        <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z"
+        />
+    </svg>
+);
+
+export const LightIcon = ({
+    className,
+    width = '3.6rem',
+    height = '3.6rem',
+}: {
+    className?: string;
+    width?: string;
+    height?: string;
+}) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className={className}
+        width={width}
+        height={height}
+    >
+        <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"
+        />
+    </svg>
+);

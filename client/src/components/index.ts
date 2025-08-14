@@ -1,2 +1,2 @@
-export { default as ComponentA } from './Icons';
-export { default as ComponentB } from './CompB';
+export { default as Header } from './Header';
+export { default as SideBar } from './SideBar';

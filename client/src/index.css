@@ -18,12 +18,12 @@
         @apply flex flex-col justify-center rounded-2xl bg-white p-6 shadow-[10px_10px_10px] shadow-purple-700;
     }
     .form-input {
-        @apply my-2 flex items-center rounded-lg border border-gray-100 p-2 focus-within:outline-2 focus-within:outline-(--color-main);
+        @apply focus-within:outline-main my-2 flex items-center rounded-lg border border-gray-100 p-2 focus-within:outline-2;
     }
 }
 
 @layer utilities {
     .bg-gradient-color {
-        @apply bg-gradient-to-r from-(--color-side) to-(--color-main);
+        @apply from-side to-main bg-gradient-to-r;
     }
 }

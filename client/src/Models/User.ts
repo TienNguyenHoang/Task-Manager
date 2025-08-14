@@ -1,14 +1,14 @@
 export interface User {
-    UserId: number;
-    FullName: string;
-    Email: string;
-    PasswordHash: string;
+    userId: number;
+    fullName: string;
+    email: string;
+    passwordHash: string;
 }
 
 export interface UserProfile {
-    UserId: number;
-    FullName: string;
-    Email: string;
+    userId: number;
+    fullName: string;
+    email: string;
 }
 
 export type LoginRequest = {
@@ -19,4 +19,10 @@ export type LoginRequest = {
 export type LoginResponse = {
     user: User;
     token: string;
+};
+
+export type RegisterRequest = {
+    fullName: string;
+    email: string;
+    password: string;
 };

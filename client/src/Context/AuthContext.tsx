@@ -4,13 +4,14 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 
-import { LoginApi } from '~/services';
-import type { UserProfile, LoginRequest } from '~/Models';
+import { LoginApi, RegisterApi } from '~/services';
+import type { UserProfile, LoginRequest, RegisterRequest } from '~/Models';
 
 type UserContextType = {
     user: UserProfile | null;
-    login: (LoginRequest: LoginRequest) => void;
-    logout: () => void;
+    loginUser: (form: LoginRequest) => void;
+    registerUser: (form: RegisterRequest) => void;
+    logoutUser: () => void;
 };
 
 const AuthContext = createContext<UserContextType>({} as UserContextType);
@@ -25,10 +26,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const login = async (LoginRequest: LoginRequest) => {
+    const loginUser = async (form: LoginRequest) => {
         const LoginRequestDto: LoginRequest = {
-            email: LoginRequest.email,
-            password: LoginRequest.password,
+            email: form.email,
+            password: form.password,
         };
         const data = await LoginApi(LoginRequestDto);
         if (data) {
@@ -41,13 +42,29 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         }
     };
 
-    const logout = () => {
+    const registerUser = async (form: RegisterRequest) => {
+        const data = await RegisterApi(form);
+        if (data) {
+            toast.success(data.message);
+            navigate('/login', { replace: true });
+        }
+    };
+
+    const logoutUser = () => {
+        if (!user) {
+            toast.warning('Không thể đăng xuất khi chưa đăng nhập');
+            return;
+        }
         Cookies.remove('accessToken');
         setUser(null);
         localStorage.removeItem('user');
+        toast.success('Đăng xuất thành công');
+        navigate('/login');
     };
 
-    return <AuthContext.Provider value={{ user, login, logout }}>{children}</AuthContext.Provider>;
+    return (
+        <AuthContext.Provider value={{ user, loginUser, logoutUser, registerUser }}>{children}</AuthContext.Provider>
+    );
 };
 
 export const useAuth = () => useContext(AuthContext);

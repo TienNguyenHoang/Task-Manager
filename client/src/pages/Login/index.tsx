@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 import * as yup from 'yup';
@@ -10,14 +10,13 @@ import { EmailIcon, PasswordIcon, LogInIcon } from '~/components/Icons';
 import type { LoginRequest } from '~/Models';
 import { useAuth } from '~/Context';
 
-const validateSchema = yup.object().shape({
+const validateSchema = yup.object({
     email: yup.string().required('Vui lòng nhập email!').email('Sai định dạng email'),
     password: yup.string().required('Vui lòng nhập mật khẩu!'),
 });
 
 const Login = () => {
-    const location = useLocation();
-    const { login } = useAuth();
+    const { loginUser } = useAuth();
     const {
         register,
         handleSubmit,
@@ -26,8 +25,8 @@ const Login = () => {
         resolver: yupResolver(validateSchema),
     });
 
-    const onSubmit = async (LoginRequest: LoginRequest) => {
-        login(LoginRequest);
+    const onSubmit = async (form: LoginRequest) => {
+        loginUser(form);
     };
 
     return (
@@ -71,11 +70,7 @@ const Login = () => {
                 </button>
                 <div className="mt-2 text-center text-sm">
                     <p className="mr-1 inline-block">Bạn chưa có tài khoản?</p>
-                    <Link
-                        className="text-main hover:underline"
-                        to={config.routes.register}
-                        state={{ from: location.state?.from?.pathname || '/' }}
-                    >
+                    <Link className="text-main hover:underline" to={config.routes.register}>
                         Đăng ký
                     </Link>
                 </div>
