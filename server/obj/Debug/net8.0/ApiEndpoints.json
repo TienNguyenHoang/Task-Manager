@@ -112,15 +112,31 @@
   },
   {
     "ContainingType": "server.Controllers.UserController",
-    "Method": "EditProfile",
-    "RelativePath": "api/User/editProfile",
-    "HttpMethod": "POST",
+    "Method": "ChangePassword",
+    "RelativePath": "api/User/changePassword",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "updateUserRequest",
-        "Type": "server.Dtos.User.UpdateUserRequest",
+        "Name": "changePasswordRequest",
+        "Type": "server.Dtos.User.ChangePasswordRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "server.Controllers.UserController",
+    "Method": "EditProfile",
+    "RelativePath": "api/User/editProfile",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "editProfileRequest",
+        "Type": "server.Dtos.User.EditProfileRequest",
         "IsRequired": true
       }
     ],

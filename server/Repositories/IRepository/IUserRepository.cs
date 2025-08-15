@@ -5,6 +5,7 @@ namespace server.Repositories.IRepository
 {
     public interface IUserRepository : IRepository<Models.User>
     {
-        Task<User?> Update(int userId, UpdateUserRequest updateUserRequest);
+        Task<User> UpdateProfile(int userId, EditProfileRequest updateUserRequest);
+        Task<Object> ChangePassword(int userId, ChangePasswordRequest request);
     }
 }

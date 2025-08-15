@@ -4,14 +4,16 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 
-import { LoginApi, RegisterApi } from '~/services';
-import type { UserProfile, LoginRequest, RegisterRequest } from '~/Models';
+import { LoginApi, RegisterApi, EditProfileApi, ChangePasswordApi } from '~/services';
+import type { UserProfile, LoginRequest, RegisterRequest, EditProfileRequest, ChangePasswordRequest } from '~/Models';
 
 type UserContextType = {
     user: UserProfile | null;
     loginUser: (form: LoginRequest) => void;
     registerUser: (form: RegisterRequest) => void;
     logoutUser: () => void;
+    editProfileUser: (form: EditProfileRequest) => void;
+    changePassword: (form: ChangePasswordRequest) => void;
 };
 
 const AuthContext = createContext<UserContextType>({} as UserContextType);
@@ -62,8 +64,37 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         navigate('/login');
     };
 
+    const editProfileUser = async (form: EditProfileRequest) => {
+        const data = await EditProfileApi(form);
+        if (data) {
+            toast.success('Cập nhật thành công!');
+            const user: UserProfile = {
+                userId: data.userId,
+                email: data.email,
+                fullName: data.fullName,
+            };
+            setUser(user);
+            localStorage.setItem('user', JSON.stringify(user));
+        }
+    };
+
+    const changePassword = async (form: ChangePasswordRequest) => {
+        const data = await ChangePasswordApi(form);
+        if (data) {
+            toast.success('Đổi mật khẩu thành công!');
+            toast.info('Vui lòng đăng nhập lại!');
+            Cookies.remove('accessToken');
+            setUser(null);
+            localStorage.removeItem('user');
+            
+            navigate('/login');
+        }
+    };
+
     return (
-        <AuthContext.Provider value={{ user, loginUser, logoutUser, registerUser }}>{children}</AuthContext.Provider>
+        <AuthContext.Provider value={{ user, loginUser, logoutUser, registerUser, editProfileUser, changePassword }}>
+            {children}
+        </AuthContext.Provider>
     );
 };
 

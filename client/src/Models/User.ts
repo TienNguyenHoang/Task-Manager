@@ -26,3 +26,13 @@ export type RegisterRequest = {
     email: string;
     password: string;
 };
+
+export type EditProfileRequest = {
+    fullName: string;
+    email: string;
+};
+
+export type ChangePasswordRequest = {
+    oldPassword: string;
+    newPassword: string;
+};

@@ -9,9 +9,9 @@ import { type RegisterRequest } from '~/Models';
 import { useAuth } from '~/Context';
 
 const validateSchema = yup.object({
-    fullName: yup.string().required('Vui lòng nhập họ tên'),
+    fullName: yup.string().required('Vui lòng nhập họ tên').min(6, 'Tối thiểu 6 ký tự!').max(20, 'Tối đa 20 ký tự'),
     email: yup.string().required('Vui lòng nhập email!').email('Sai định dạng email'),
-    password: yup.string().required('Vui lòng nhập mật khẩu!'),
+    password: yup.string().required('Vui lòng nhập mật khẩu!').min(6, 'Tối thiểu 6 ký tự!').max(20, 'Tối đa 20 ký tự'),
 });
 
 const Register = () => {

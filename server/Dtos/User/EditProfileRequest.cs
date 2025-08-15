@@ -2,14 +2,13 @@
 
 namespace server.Dtos.User
 {
-    public class UpdateUserRequest
+    public class EditProfileRequest
     {
         [Required(ErrorMessage = "Vui lòng nhập tên")]
+        [StringLength(20, MinimumLength = 6, ErrorMessage = "Tối thiểu 6 ký tự")]
         public string FullName { get; set; } = null!;
         [Required(ErrorMessage = "Vui lòng nhập email")]
         [EmailAddress(ErrorMessage = "Sai định dạng email")]
         public string Email { get; set; } = null!;
-        [Required(ErrorMessage = "Vui lòng nhập mật khẩu")]
-        public string Password { get; set; } = null!;
     }
 }

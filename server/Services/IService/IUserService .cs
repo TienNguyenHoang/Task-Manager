@@ -4,6 +4,7 @@ namespace server.Services.IService
 {
     public interface IUserService
     {
-        Task<UserDto?> Update(int userId, UpdateUserRequest request);
+        Task<UserDto> UpdateProfile(int userId, EditProfileRequest request);
+        Task<Object> ChangePassword(int userId, ChangePasswordRequest request);
     }
 }

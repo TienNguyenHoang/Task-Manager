@@ -67,7 +67,7 @@ const Header = () => {
                     )}
                 >
                     <div
-                        className="group ml-8 flex cursor-pointer rounded-2xl p-2 hover:bg-gray-300/20"
+                        className="group ml-5 flex cursor-pointer rounded-2xl p-2 hover:bg-gray-300/20"
                         onClick={() => setVisible(!visible)}
                     >
                         <div className="relative">

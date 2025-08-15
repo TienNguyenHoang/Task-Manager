@@ -27,9 +27,7 @@ namespace Server.Service
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, userModel.UserId.ToString()),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(JwtRegisteredClaimNames.Name, userModel.FullName),
-                new Claim(JwtRegisteredClaimNames.Email, userModel.Email)
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
             var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
             var tokenDescriptor = new SecurityTokenDescriptor

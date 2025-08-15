@@ -23,7 +23,7 @@ namespace server.Controllers
             try
             {
                 var response = await _authService.Login(loginRequest);
-                if (response == null) return Unauthorized();
+                if (response == null) return Unauthorized(new { message = "Tài khoản hoặc mật khẩu không đúng" });
                 return Ok(response);
             }
             catch (BadHttpRequestException ex)
@@ -47,7 +47,7 @@ namespace server.Controllers
             if (!ModelState.IsValid) return BadRequest(ModelState);
             var response = await _authService.Register(registerRequest);
             if (response == null) return BadRequest(new { message = "Email đã tồn tại" });
-            return Ok(response);
+            return Ok(new { message = "Đăng ký thành công! Vui lòng đăng nhập"});
         }
     }
 }
