@@ -11,6 +11,18 @@
     --font-roboto: 'Roboto', sans-serif;
     --color-side: #e12afb;
     --color-main: #9810fa;
+    --animate-fadeIn: fadeIn 0.5s ease-out;
+
+    @keyframes fadeIn {
+        from {
+            transform: translateY(-4px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
 }
 
 @layer components {

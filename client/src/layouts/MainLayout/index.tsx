@@ -10,7 +10,7 @@ const MainLayout: React.FC<Props> = ({ children }) => {
     return (
         <div className="">
             <Header />
-            <div className="fixed top-22 right-0 bottom-0 left-0 flex">
+            <div className="fixed top-25 right-0 bottom-0 left-0 flex">
                 <SideBar />
                 <div className="flex-1 bg-gray-300/10">{children}</div>
             </div>
