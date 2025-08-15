@@ -14,10 +14,10 @@ const SideBar = () => {
     const { user } = useAuth();
 
     return (
-        <div className="w-1/6 p-6 shadow-md">
+        <div className="sticky top-[100px] w-1/6 p-6 shadow-md">
             <div className="flex border-b border-gray-300/30 pb-5">
                 <UserIcon className="bg-gradient-color size-10 rounded-full p-2 text-white" />
-                <div className="ml-4 flex-1">
+                <div className="ml-2 flex-1">
                     <h1 className="text-sm font-bold">Xin chào, {user?.fullName}</h1>
                     <div className="bg-gradient-color mt-1 flex items-start bg-clip-text text-xs text-transparent italic">
                         <StarIcon className="text-side mr-1 inline-block" />

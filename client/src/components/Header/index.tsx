@@ -16,10 +16,13 @@ const Header = () => {
     console.log('user from header', user);
 
     return (
-        <div className="fixed top-0 right-0 left-0 flex justify-between px-30 py-5 shadow-md">
+        <div className="sticky top-0 right-0 left-0 flex justify-between bg-white px-30 py-5 shadow-sm">
             <Link to={config.routes.dashboard}>
                 <div className="flex items-center justify-center">
-                    <LogoIcon className="text-white" />
+                    <div className="bg-gradient-color inline-block rounded-xl p-2">
+                        <LogoIcon className="text-white" />
+                    </div>
+
                     <span className="bg-gradient-color ml-2 bg-clip-text text-2xl font-bold text-transparent">
                         Task Manager
                     </span>
@@ -28,7 +31,7 @@ const Header = () => {
             <div className="flex items-center justify-center">
                 <Tippy content="Settings" placement="bottom" delay={[0, 200]} offset={[0, 15]}>
                     <Link to={config.routes.editProfile}>
-                        <SettingIcon className="hover:text-main cursor-pointer" />
+                        <SettingIcon className="hover:text-main cursor-pointer transition-transform duration-300 hover:rotate-45" />
                     </Link>
                 </Tippy>
                 <HeadlessTippy
@@ -89,13 +92,13 @@ const Header = () => {
                         <p className="text-sm">Bạn có chắc muốn đăng xuất ?</p>
                         <div className="text-md mt-1 flex w-50 font-bold">
                             <button
-                                className="bg-gradient-color flex-1 cursor-pointer rounded-tl-2xl rounded-bl-2xl p-3 opacity-85 hover:opacity-100"
+                                className="bg-gradient-color flex-1 cursor-pointer rounded-tl-2xl rounded-bl-2xl py-1 opacity-85 hover:opacity-100"
                                 onClick={logoutUser}
                             >
                                 Có
                             </button>
                             <button
-                                className="flex-1 cursor-pointer rounded-tr-2xl rounded-br-2xl bg-gray-300 p-3 opacity-85 hover:opacity-100"
+                                className="flex-1 cursor-pointer rounded-tr-2xl rounded-br-2xl bg-gray-300 py-1 opacity-85 hover:opacity-100"
                                 onClick={() => setOpen(false)}
                             >
                                 Hủy

@@ -1,6 +1,6 @@
 import React, { type ReactNode } from 'react';
 
-import { Header, SideBar } from '~/components';
+import { Header, SideBar, RightBar } from '~/components';
 
 type Props = {
     children: ReactNode;
@@ -8,11 +8,12 @@ type Props = {
 
 const MainLayout: React.FC<Props> = ({ children }) => {
     return (
-        <div className="">
+        <div className="wrapper">
             <Header />
-            <div className="fixed top-25 right-0 bottom-0 left-0 flex">
+            <div className="flex bg-gray-300/10">
                 <SideBar />
-                <div className="flex-1 bg-gray-300/10">{children}</div>
+                <div className="h-[10000px] flex-1 px-20 py-10">{children}</div>
+                <RightBar />
             </div>
         </div>
     );

@@ -68,10 +68,10 @@ const EditProfile = () => {
     };
 
     return (
-        <div className="px-20 py-10">
+        <div className="wrapper">
             <div className="flex items-center gap-3">
                 <div>
-                    <UserIcon className="bg-gradient-color size-18 rounded-full p-2 text-white" />
+                    <UserIcon className="bg-gradient-color size-12 rounded-full p-2 text-white" />
                 </div>
                 <div className="flex-1">
                     <h1 className="text-2xl font-bold">Cài đặt thông tin cá nhân</h1>
