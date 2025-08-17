@@ -50,13 +50,13 @@
   {
     "ContainingType": "server.Controllers.TaskController",
     "Method": "Delete",
-    "RelativePath": "api/Task/delete/{id}",
+    "RelativePath": "api/Task/delete/{taskId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "taskId",
         "Type": "System.Int32",
         "IsRequired": true
       }
@@ -92,13 +92,13 @@
   {
     "ContainingType": "server.Controllers.TaskController",
     "Method": "Update",
-    "RelativePath": "api/Task/update/{id}",
+    "RelativePath": "api/Task/update/{taskId}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "taskId",
         "Type": "System.Int32",
         "IsRequired": true
       },

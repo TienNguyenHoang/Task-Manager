@@ -5,6 +5,7 @@ import { Fragment } from 'react/jsx-runtime';
 import { AuthProvider } from '~/Context';
 import routes from '~/routes';
 import { MainLayout } from '~/layouts';
+import type { JSX } from 'react';
 
 function App() {
     return (
@@ -13,7 +14,7 @@ function App() {
                 <div className="App">
                     <Routes>
                         {routes.map((route, index) => {
-                            const Page = route.component;
+                            const Page: ({ title }: { title: string }) => JSX.Element = route.component;
                             let Layout = MainLayout;
 
                             if (route.layout) {
@@ -41,12 +42,12 @@ function App() {
                                         isGuard ? (
                                             <RouteGuard>
                                                 <Layout>
-                                                    <Page />
+                                                    <Page title={route.title} />
                                                 </Layout>
                                             </RouteGuard>
                                         ) : (
                                             <Layout>
-                                                <Page />
+                                                <Page title={route.title} />
                                             </Layout>
                                         )
                                     }

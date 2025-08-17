@@ -1,12 +1,11 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import config from '~/config';
-import { EmailIcon, PasswordIcon, LogInIcon } from '~/components/Icons';
-
+import { Icon } from '~/components';
 import type { LoginRequest } from '~/Models';
 import { useAuth } from '~/Context';
 
@@ -15,7 +14,10 @@ const validateSchema = yup.object({
     password: yup.string().required('Vui lòng nhập mật khẩu!'),
 });
 
-const Login = () => {
+const Login = ({ title }: { title: string }) => {
+    useEffect(() => {
+        document.title = title;
+    }, [title]);
     const { loginUser } = useAuth();
     const {
         register,
@@ -32,11 +34,11 @@ const Login = () => {
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="min-h-[50%] min-w-[25%]">
             <div className="login-box">
-                <LogInIcon className="bg-gradient-color m-5 self-center rounded-full p-3 text-white" />
+                <Icon.LogInIcon className="bg-gradient-color m-5 self-center rounded-full p-3 text-white" />
                 <h1 className="self-center text-3xl font-bold">Chào mừng</h1>
                 <p className="my-2 self-center text-xs">Đăng nhập để tiếp tục với TaskManager</p>
                 <div className="form-input">
-                    <EmailIcon className="text-side mr-2" />
+                    <Icon.EmailIcon className="text-side mr-2" />
                     <input
                         className="flex-1 caret-(--color-main) outline-none"
                         type="email"
@@ -47,7 +49,7 @@ const Login = () => {
                 </div>
                 {errors.email && <p className="text-xs text-red-500">{errors.email.message}</p>}
                 <div className="form-input">
-                    <PasswordIcon className="text-side mr-2" />
+                    <Icon.PasswordIcon className="text-side mr-2" />
                     <input
                         className="flex-1 caret-(--color-main) outline-none"
                         type="password"

@@ -11,6 +11,9 @@
     --font-roboto: 'Roboto', sans-serif;
     --color-side: #e12afb;
     --color-main: #9810fa;
+    --color-low-priority: #0f9b0f;
+    --color-high-priority: #c31432;
+    --color-normal-priority: #f37335;
     --animate-fadeIn: fadeIn 0.5s ease-out;
 
     @keyframes fadeIn {
@@ -31,6 +34,9 @@
     }
     .form-input {
         @apply focus-within:outline-main my-2 flex items-center rounded-lg border border-gray-100 p-2 focus-within:outline-2;
+    }
+    .filterItem {
+        @apply hover:text-main hover:outline-main cursor-pointer rounded-lg p-2 text-xs font-semibold text-gray-500 hover:bg-white hover:outline;
     }
 }
 

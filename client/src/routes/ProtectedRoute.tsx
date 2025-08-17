@@ -11,7 +11,6 @@ type Props = {
 const ProtectedRoute: React.FC<Props> = ({ children }) => {
     const location = useLocation();
     const { user } = useAuth();
-    console.log('user: ', user);
     if (!user) {
         return <Navigate to={config.routes.login} state={{ from: location }} replace />;
     }

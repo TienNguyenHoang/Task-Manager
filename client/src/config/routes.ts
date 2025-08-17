@@ -1,7 +1,7 @@
 const routes = {
+    default: '/',
     login: '/login',
     register: '/register',
-    home: '/',
     editProfile: '/editProfile',
     dashboard: '/dashboard',
     pending: '/pending',

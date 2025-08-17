@@ -47,23 +47,23 @@ namespace server.Controllers
             return CreatedAtAction(nameof(GetTaskById), new { id = taskDto.TaskId }, taskDto);
         }
 
-        [HttpPut("update/{id}")]
-        public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdateTaskRequest request)
+        [HttpPut("update/{taskId}")]
+        public async Task<IActionResult> Update([FromRoute] int taskId, [FromBody] UpdateTaskRequest request)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (string.IsNullOrEmpty(userId)) return Unauthorized(new { message = "Invalid or missing token" });
-            var taskDto = await _taskService.UpdateTask(Int32.Parse(userId), id, request);
+            var taskDto = await _taskService.UpdateTask(Int32.Parse(userId), taskId, request);
             if (taskDto == null) return NotFound();
             return Ok(taskDto);
         }
 
-        [HttpDelete("delete/{id}")]
-        public async Task<IActionResult> Delete([FromRoute] int id)
+        [HttpDelete("delete/{taskId}")]
+        public async Task<IActionResult> Delete([FromRoute] int taskId)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (string.IsNullOrEmpty(userId)) return Unauthorized(new { message = "Invalid or missing token" });
-            var result = await _taskService.DeleteTask(Int32.Parse(userId), id);
+            var result = await _taskService.DeleteTask(Int32.Parse(userId), taskId);
             if (result == null) return NotFound();
             return NoContent();
         }

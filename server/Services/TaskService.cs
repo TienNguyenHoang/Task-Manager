@@ -33,8 +33,8 @@ namespace server.Services
                 CreatedAt = DateTime.UtcNow,
                 Description = createTaskRequest.Description,
                 DueDate = createTaskRequest.DueDate,
-                Priority = createTaskRequest.Priority,
-                Status = createTaskRequest.Status,
+                Priority = createTaskRequest.Priority.ToString(),
+                Status = createTaskRequest.Status.ToString(),
                 Title = createTaskRequest.Title,
             };
             await _taskRepository.AddAsync(task);

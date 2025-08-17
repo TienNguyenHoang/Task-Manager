@@ -1,10 +1,10 @@
-enum Status {
+export enum Status {
     Todo = 'Todo',
-    InProgress = 'In progress',
-    Done = 'Done',
+    InProgress = 'InProgress',
+    Completed = 'Completed',
 }
 
-enum Priority {
+export enum Priority {
     Low = 'Low',
     Normal = 'Normal',
     High = 'High',
@@ -18,5 +18,21 @@ export interface Task {
     status: Status;
     priority: Priority;
     dueDate: Date;
-    createAt: Date;
+    createdAt: Date;
 }
+
+export type CreateTaskRequest = {
+    title: string;
+    description: string;
+    status: Status;
+    priority: Priority;
+    dueDate: Date;
+};
+
+export type UpdateTaskRequest = {
+    title: string;
+    description: string;
+    status: Status;
+    priority: Priority;
+    dueDate: string;
+};

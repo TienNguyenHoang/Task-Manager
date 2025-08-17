@@ -10,7 +10,7 @@ type Props = {
 
 const GuestRoute: React.FC<Props> = ({ children }) => {
     const { user } = useAuth();
-    if (user) return <Navigate to={config.routes.home} replace />;
+    if (user) return <Navigate to={config.routes.dashboard} replace />;
     return children;
 };
 

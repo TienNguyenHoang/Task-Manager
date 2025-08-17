@@ -19,9 +19,9 @@ namespace server.Repositories
             if (task == null) return null;
             task.Title = updateTaskRequest.Title;
             task.Description = updateTaskRequest.Description;
-            task.Status = updateTaskRequest.Status;
+            task.Status = updateTaskRequest.Status.ToString();
             task.DueDate = updateTaskRequest.DueDate;
-            task.Priority = updateTaskRequest.Priority;
+            task.Priority = updateTaskRequest.Priority.ToString();
             await _db.SaveChangesAsync();
             return task;
         }

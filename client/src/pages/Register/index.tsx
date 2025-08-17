@@ -1,10 +1,11 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import config from '~/config';
-import { UserIcon, EmailIcon, PasswordIcon, RegisterIcon } from '~/components/Icons';
+import { Icon } from '~/components';
 import { type RegisterRequest } from '~/Models';
 import { useAuth } from '~/Context';
 
@@ -14,7 +15,10 @@ const validateSchema = yup.object({
     password: yup.string().required('Vui lòng nhập mật khẩu!').min(6, 'Tối thiểu 6 ký tự!').max(20, 'Tối đa 20 ký tự'),
 });
 
-const Register = () => {
+const Register = ({ title }: { title: string }) => {
+    useEffect(() => {
+        document.title = title;
+    }, [title]);
     const { registerUser } = useAuth();
     const {
         register,
@@ -31,11 +35,11 @@ const Register = () => {
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="min-h-[50%] min-w-[25%]">
             <div className="login-box">
-                <RegisterIcon className="bg-gradient-color m-5 self-center rounded-full p-3 text-white" />
+                <Icon.RegisterIcon className="bg-gradient-color m-5 self-center rounded-full p-3 text-white" />
                 <h1 className="self-center text-3xl font-bold">Tạo tài khoản</h1>
                 <p className="my-2 self-center text-xs">Tham gia TaskManager để quản lý công việc của bạn</p>
                 <div className="form-input">
-                    <UserIcon className="text-side mr-2" />
+                    <Icon.UserIcon className="text-side mr-2" />
                     <input
                         className="flex-1 caret-(--color-main) outline-none"
                         type="text"
@@ -46,7 +50,7 @@ const Register = () => {
                 </div>
                 {errors.fullName && <p className="text-xs text-red-500">{errors.fullName.message}</p>}
                 <div className="form-input">
-                    <EmailIcon className="text-side mr-2" />
+                    <Icon.EmailIcon className="text-side mr-2" />
                     <input
                         className="flex-1 caret-(--color-main) outline-none"
                         type="email"
@@ -57,7 +61,7 @@ const Register = () => {
                 </div>
                 {errors.email && <p className="text-xs text-red-500">{errors.email.message}</p>}
                 <div className="form-input">
-                    <PasswordIcon className="text-side mr-2" />
+                    <Icon.PasswordIcon className="text-side mr-2" />
                     <input
                         className="flex-1 caret-(--color-main) outline-none"
                         type="password"
