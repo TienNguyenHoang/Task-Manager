@@ -44,7 +44,7 @@ const SideBar = () => {
                         key={item.name}
                         to={item.path}
                         className={({ isActive }) =>
-                            `flex items-center rounded-2xl p-3 ${isActive ? 'from-side/5 to-main/5 border-main text-main border-l-3 bg-gradient-to-r font-bold shadow-sm' : ''}`
+                            `flex items-center rounded-2xl border-l-3 border-gray-200/2 p-3 transition-colors duration-300 ${isActive ? 'from-side/5 to-main/5 border-main text-main bg-gradient-to-r font-bold shadow-sm' : ''}`
                         }
                     >
                         <item.icon className="text-main mr-2 inline-block" />

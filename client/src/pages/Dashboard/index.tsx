@@ -3,7 +3,7 @@ import 'tippy.js/dist/tippy.css';
 
 import { useTasks } from '~/Context';
 import { Icon } from '~/components';
-import { TaskList, filterOptions } from '../components';
+import { TaskList, DashboardFilterOptions as filterOptions } from '../components';
 import { StatisticPanel } from './Statistic';
 
 const filterLabels = {
@@ -45,19 +45,25 @@ const Dashboard = ({ title }: { title: string }) => {
                     <Icon.FunnelIcon className="text-main mr-2 mb-1 inline-block" />
                     <span className="text-md font-semibold">Tất cả Tasks</span>
                 </div>
-                <select
-                    className="flex gap-1 rounded-lg bg-gray-300/20 p-2"
-                    onChange={(e) => setFilter(filterOptions[e.target.value as keyof typeof filterOptions])}
-                >
+                <div className="flex gap-1 rounded-lg bg-gray-300/20 p-2">
                     {Object.keys(filterOptions).map((option) => (
-                        <option key={option} value={option} className="filterItem">
+                        <div
+                            key={option}
+                            onClick={() => setFilter(filterOptions[option as keyof typeof filterOptions])}
+                            className={`cursor-pointer rounded-lg p-2 text-xs font-semibold transition-all duration-200 ${
+                                filter === filterOptions[option as keyof typeof filterOptions]
+                                    ? 'text-main outline-main bg-white outline'
+                                    : 'hover:text-main text-gray-500 hover:shadow-md'
+                            }`}
+                            // className="filterItem"
+                        >
                             {filterLabels[option as keyof typeof filterLabels]}
-                        </option>
+                        </div>
                     ))}
-                </select>
+                </div>
             </div>
             <TaskList
-                filter={filter}
+                options={filter}
                 setCreateModal={TaskModalHandler.handleOpenCreateModal}
                 setEditModal={TaskModalHandler.handleOpenEditModal}
                 setDeleteModal={TaskModalHandler.handleOpenDeleteModal}

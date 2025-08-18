@@ -2,9 +2,9 @@
 import { createContext, useEffect, useState, useContext, type ReactNode } from 'react';
 
 import { CreateTaskApi, DeleteTaskApi, GetAllTaskApi, UpdateTaskApi } from '~/services/TaskService';
-import { Priority, type CreateTaskRequest, type Task, type UpdateTaskRequest } from '~/Models';
+import { Priority, Status, type CreateTaskRequest, type Task, type UpdateTaskRequest } from '~/Models';
 import { CreateTaskStatistics, type TaskStatisticsType } from '~/Helpers';
-import { filterOptions } from '~/pages/components';
+import { DashboardFilterOptions, PendingSortOptions, CompletedSortOptions } from '~/pages/components';
 
 type ModalType = {
     type: 'create' | 'edit' | 'delete' | undefined;
@@ -30,7 +30,9 @@ type TaskContextType = {
     isEmpty: () => boolean;
     TaskStatistics: TaskStatisticsType;
     TaskModalHandler: TaskModalHandlerType;
-    getTasks: (filter: filterOptions) => FilterType;
+    getTasks: (filter: DashboardFilterOptions) => FilterType;
+    getPendingTasks: (sort: PendingSortOptions) => Task[] | undefined;
+    getCompletedTasks: (sort: CompletedSortOptions) => Task[] | undefined;
     createTask: (form: CreateTaskRequest) => void;
     updateTask: (taskId: number, form: UpdateTaskRequest) => void;
     getTask: (taskId: number) => Task | undefined;
@@ -66,20 +68,20 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
         return false;
     };
 
-    const getTasks = (filter: filterOptions) => {
+    const getTasks = (filter: DashboardFilterOptions) => {
         const today = new Date();
         const nextWeek = new Date(today);
         nextWeek.setDate(today.getDate() + 7);
         let warning = 'Chưa có task nào cả!';
         let filterTasks = tasks;
         switch (filter) {
-            case filterOptions.all:
+            case DashboardFilterOptions.all:
                 break;
-            case filterOptions.today:
+            case DashboardFilterOptions.today:
                 warning = 'Hôm nay không có task nào cả!';
                 filterTasks = tasks?.filter((task) => task.dueDate.toDateString() === today.toDateString());
                 break;
-            case filterOptions.week:
+            case DashboardFilterOptions.week:
                 warning = 'Không có deadline trong tuần!';
                 filterTasks = tasks?.filter(
                     (task) =>
@@ -87,15 +89,15 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
                         task.dueDate.toDateString() <= nextWeek.toDateString(),
                 );
                 break;
-            case filterOptions.high:
+            case DashboardFilterOptions.high:
                 warning = 'Không có task nào khó cả!';
                 filterTasks = tasks?.filter((task) => task.priority === Priority.High);
                 break;
-            case filterOptions.normal:
+            case DashboardFilterOptions.normal:
                 warning = 'Không có task vừa vừa!';
                 filterTasks = tasks?.filter((task) => task.priority === Priority.Normal);
                 break;
-            case filterOptions.low:
+            case DashboardFilterOptions.low:
                 warning = 'Không có task nào dễ hết!';
                 filterTasks = tasks?.filter((task) => task.priority === Priority.Low);
                 break;
@@ -106,6 +108,48 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
             filterTasks,
             warning,
         };
+    };
+
+    const getPendingTasks = (sort: PendingSortOptions) => {
+        const pendingTasks = tasks?.filter((task) => task.status === Status.InProgress || task.status === Status.Todo);
+        const priorityOrder = {
+            [Priority.High]: 3,
+            [Priority.Normal]: 2,
+            [Priority.Low]: 1,
+        };
+        switch (sort) {
+            case PendingSortOptions.newest:
+                return pendingTasks?.sort((task1, task2) => task2.dueDate.getTime() - task1.dueDate.getTime());
+            case PendingSortOptions.oldest:
+                return pendingTasks?.sort((task1, task2) => task1.dueDate.getTime() - task2.dueDate.getTime());
+            case PendingSortOptions.priority:
+                return pendingTasks?.sort((task1, task2) => {
+                    return priorityOrder[task2.priority] - priorityOrder[task1.priority];
+                });
+            default:
+                return pendingTasks;
+        }
+    };
+
+    const getCompletedTasks = (sort: CompletedSortOptions) => {
+        const completedTasks = tasks?.filter((task) => task.status === Status.Completed);
+        const priorityOrder = {
+            [Priority.High]: 3,
+            [Priority.Normal]: 2,
+            [Priority.Low]: 1,
+        };
+        switch (sort) {
+            case CompletedSortOptions.newest:
+                return completedTasks?.sort((task1, task2) => task2.dueDate.getTime() - task1.dueDate.getTime());
+            case CompletedSortOptions.oldest:
+                return completedTasks?.sort((task1, task2) => task1.dueDate.getTime() - task2.dueDate.getTime());
+            case CompletedSortOptions.priority:
+                return completedTasks?.sort((task1, task2) => {
+                    return priorityOrder[task2.priority] - priorityOrder[task1.priority];
+                });
+            default:
+                return completedTasks;
+        }
     };
 
     const getTask = (taskId: number) => {
@@ -203,6 +247,8 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
                 updateTask,
                 getTask,
                 deleteTask,
+                getCompletedTasks,
+                getPendingTasks,
             }}
         >
             {children}
